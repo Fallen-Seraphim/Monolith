@@ -84,3 +84,4 @@
     - XenoTranslator
     - NewKinPidginTranslator # Vox
     - NewKinPidginTranslatorImplanter # Vox
+    - CadrisTranslatorImplanter # Forge-Change
