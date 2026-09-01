@@ -231,7 +231,7 @@
   name: tech disk printer disks
   id: SpawnLootTechDisksShieldsFSG900P
   parent: MarkerBasePlaceFree
-  suffix: "Tech Disk Printer FSG-900P
+  suffix: "Tech Disk Printer FSG-900P"
   components:
   - type: Sprite
     layers:
