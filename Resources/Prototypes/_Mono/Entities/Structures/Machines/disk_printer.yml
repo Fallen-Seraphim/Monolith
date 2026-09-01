@@ -219,9 +219,29 @@
     prototypes:
     - TechDiskBluespaceBags
     - TechDiskTranslationPreFracture
-    - TechDiskForgeFSG900P
+    - SpawnLootTechDisksShieldsFSG900P
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - TechDiskSpeedBoots
     rareChance: 0.1
+
+
+- type: entity
+  name: tech disk printer disks
+  id: SpawnLootTechDisksShieldsFSG900P
+  parent: MarkerBasePlaceFree
+  suffix: "Tech Disk Printer FSG-900P
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - TechDiskForgeFSG900P
+    chance: 0.55
+    offset: 0.0
