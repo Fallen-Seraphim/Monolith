@@ -175,32 +175,12 @@
     - TechDiskHristov
     - TechDiskMla73
     - TechDiskUniversalShipAmmoAdvanced
-    - SpawnLootTechDisksShieldsT3
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnLootTechDisksPrinterT4 
+    - TechDiskForgeFSGCivilianT3 #Forge-change
     rareChance: 0.15
-
-#Forge-change start
-- type: entity
-  name: tech disk printer disks
-  id: SpawnLootTechDisksShieldsT3
-  parent: MarkerBasePlaceFree
-  suffix: "Tech Disk Printer T3 Shields"
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: _NF/Markers/general.rsi
-      state: questionmark
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - TechDiskForgeFSGCivilianT3
-    chance: 0.55
-    offset: 0.0
 
 - type: entity
   name: tech disk printer disks
@@ -219,29 +199,9 @@
     prototypes:
     - TechDiskBluespaceBags
     - TechDiskTranslationPreFracture
-    - SpawnLootTechDisksShieldsFSG900P
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - TechDiskSpeedBoots
+    - TechDiskForgeFSG900P #Forge-change
     rareChance: 0.1
-
-
-- type: entity
-  name: tech disk printer disks
-  id: SpawnLootTechDisksShieldsFSG900P
-  parent: MarkerBasePlaceFree
-  suffix: "Tech Disk Printer FSG-900P"
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: _NF/Markers/general.rsi
-      state: questionmark
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - TechDiskForgeFSG900P
-    chance: 0.55
-    offset: 0.0
