@@ -1,0 +1,397 @@
+- type: damageModifierSet
+  id: PraetorArmor
+  coefficients:
+    Piercing: 0.3   
+    Blunt: 0.2      
+    Slash: 0.2      
+    Heat: 0.85      
+    Shock: 0.2      
+    Cold: 0.0       
+  flatModifiers: 
+    Piercing: 21    
+    Blunt: 14     
+    Slash: 18     
+    Heat: 2        
+     
+
+- type: entity
+  parent: SimpleMobBase 
+  id: MobXenoPraetorEvent
+  name: Praetorian
+  description: Huge xeno. It fades into the shadows when stationary.
+  components:
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      650: Critical 
+      750: Dead
+  - type: Damageable
+    damageModifierSet: PraetorArmor
+  - type: GhostRole
+    name: Praetorian 
+    description: You’ve escaped from the test tube. Fade into the dark and hunt the colonists!
+    rules: Fear? 
+  - type: GhostTakeoverAvailable
+    roleName: Praetorian
+    roleDescription: You’ve escaped from the test tube. Fade into the dark and hunt the colonists!
+    rules: Fear?
+  - type: Puller
+    needsHands: false
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcSlash
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+        Slash: 55         
+        Structural: 35   
+        Stamina: 50     
+  - type: Barotrauma
+    damage:
+      types: {}
+  - type: PressureImmunity
+  - type: Sprite
+    sprite: _Forge/Mobs/Player/IventXenos/praetorianum.rsi 
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: crit 
+      Dead:
+        Base: dead    
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.0
+    baseSprintSpeed : 5.0
+  - type: Stealth        
+    maxVisibility: 1.0
+    minVisibility: 0.0   
+  - type: StealthOnMove  
+    passiveVisibilityRate: -0.1 
+    movementVisibilityRate: 1.5 
+  - type: Bloodstream
+    bloodReagent: Xenoblood
+    bloodMaxVolume: 300
+    bleedReductionAmount: 3
+    bloodlossThreshold: 0
+    bloodRefreshAmount: 10
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 15
+  - type: LanguageKnowledge 
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+  - type: ThermalVision
+    lightRadius: 15
+    activateSound: null
+    deactivateSound: null
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      250: 0.7
+      400: 0.5
+  - type: NPCUseActionOnTarget
+    actionId: ActionXenoTint
+  - type: CollectiveMind
+    channels:
+    - XenoIvent
+    defaultChannel: XenoIvent
+
+
+- type: reagent
+  id: Xenoblood
+  name: Xeno's blood
+  desc: Highly corrosive and toxic acidic blood of an extraterrestrial organism.
+  group: Toxins
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acid
+  color: "#189e0e"
+  boilingPoint: 165
+  meltingPoint: -87
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 8 
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+  metabolisms:
+    Poison:
+      metabolismRate: 3.00
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 8
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.25
+
+
+- type: entity
+  id: ActionXenoTint
+  name: "[color=green]Tentacle Slam[/color]"
+  description: Use your tentacles to grab and stun a target player!
+  components:
+  - type: EntityWorldTargetAction
+    raiseOnUser: true
+    icon:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_spawn
+    iconOn:
+      sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath_tentacle_wiggle
+    sound:
+      path: "/Audio/Weapons/slash.ogg"
+    event: !type:GoliathSummonTentacleAction
+    useDelay: 30
+    range: 10
+
+- type: collectiveMind
+  id: XenoIvent
+  name: Xeno's hive mind
+  keycode: 's'
+  color: "#721aba"
+
+- type: damageModifierSet
+  id: RunnerArmor
+  coefficients:
+    Piercing: 0.4   
+    Blunt: 0.3     
+    Slash: 0.3     
+    Heat: 0.85      
+    Shock: 0.3     
+    Cold: 0.0       
+  flatModifiers: 
+    Piercing: 14     
+    Blunt: 10     
+    Slash: 11     
+    Heat: 2       
+
+- type: entity
+  parent: SimpleMobBase 
+  id: MobXenoRunnerEvent
+  name: Runner
+  description: Fast and agile xeno. It uses lightning-fast strikes to incapacitate targets.
+  components:
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical 
+      380: Dead
+  - type: Damageable
+    damageModifierSet: RunnerArmor
+  - type: GhostRole
+    name: Runner
+    description: You are the scout of the hive. Outrun your prey, stun them, and let others finish the job!
+    rules: Fear? 
+  - type: GhostTakeoverAvailable
+    roleName: Runner
+    roleDescription: You are the scout of the hive. Outrun your prey, stun them, and let others finish the job!
+    rules: Fear?
+  - type: Puller
+    needsHands: false
+    speedModifier: 0.9
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcSlash
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 10         
+        Slash: 15         
+        Structural: 10   
+        Stamina: 50       
+  - type: Barotrauma
+    damage:
+      types: {}
+  - type: PressureImmunity
+  - type: Sprite
+    sprite: _Forge/Mobs/Player/IventXenos/runner.rsi 
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: crit 
+      Dead:
+        Base: dead    
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5.0     
+    baseSprintSpeed : 8.5   
+  - type: Bloodstream
+    bloodReagent: Xenoblood
+    bloodMaxVolume: 200     
+    bleedReductionAmount: 3
+    bloodlossThreshold: 0
+    bloodRefreshAmount: 10
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 15
+  - type: LanguageKnowledge 
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+  - type: ThermalVision
+    lightRadius: 15
+    activateSound: null
+    deactivateSound: null
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: SlowOnDamage      
+    speedModifierThresholds:
+      150: 0.8
+      250: 0.6
+  - type: CollectiveMind
+    channels:
+    - XenoIvent
+    defaultChannel: XenoIvent
+
+
+- type: damageModifierSet
+  id: FacelessArmor
+  coefficients:
+    Piercing: 0.45  
+    Blunt: 0.4      
+    Slash: 0.4      
+    Heat: 0.5       
+    Shock: 0.4      
+    Cold: 0.0       
+  flatModifiers: 
+    Piercing: 10    
+    Blunt: 8     
+    Slash: 10     
+    Heat: 5        
+
+- type: entity
+  parent: SimpleMobBase 
+  id: MobXenoFacelessEvent
+  name: Faceless
+  description: A terrifying, faceless horror. It melts into the darkness and spits lethal acid.
+  components:
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Critical 
+      550: Dead
+  - type: Damageable
+    damageModifierSet: FacelessArmor
+  - type: GhostRole
+    name: Faceless
+    description: You are the stealthy stalker of the hive. Dissolve into shadows, ambush targets with acid.
+    rules: Fear? 
+  - type: GhostTakeoverAvailable
+    roleName: Faceless
+    roleDescription: You are the stealthy stalker of the hive. Dissolve into shadows, ambush targets with acid.
+    rules: Fear?
+  - type: Puller
+    needsHands: false
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcSlash
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 10         
+        Slash: 15         
+        Caustic: 40       
+  - type: Barotrauma
+    damage:
+      types: {}
+  - type: PressureImmunity
+  - type: Sprite
+    sprite: _Forge/Mobs/Player/IventXenos/faceless.rsi 
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: crit 
+      Dead:
+        Base: dead    
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5     
+    baseSprintSpeed : 5.5    
+  - type: Stealth           
+    maxVisibility: 1.0      
+    minVisibility: 0.0      
+  - type: StealthOnMove  
+    passiveVisibilityRate: -0.25 
+    movementVisibilityRate: 0.25  
+  - type: Bloodstream
+    bloodReagent: Xenoblood
+    bloodMaxVolume: 300     
+    bleedReductionAmount: 2
+    bloodlossThreshold: 0
+    bloodRefreshAmount: 10
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 5
+  - type: LanguageKnowledge 
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+  - type: ThermalVision
+    lightRadius: 15
+    activateSound: null
+    deactivateSound: null
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: SlowOnDamage      
+    speedModifierThresholds:
+      200: 0.8
+      350: 0.5
+  - type: CollectiveMind
+    channels:
+    - XenoIvent
+    defaultChannel: XenoIvent
