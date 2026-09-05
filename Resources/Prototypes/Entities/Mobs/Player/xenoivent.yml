@@ -111,6 +111,14 @@
     channels:
     - XenoIvent
     defaultChannel: XenoIvent
+  - type: Prying
+  - type: Tag 
+    tags: 
+    - XenoEmotions
+  - type: Vocal
+    sounds:
+      Unsexed: SoundsXeno
+
 
 
 - type: reagent
@@ -284,6 +292,14 @@
     channels:
     - XenoIvent
     defaultChannel: XenoIvent
+  - type: Prying
+  - type: Tag 
+    tags: 
+    - XenoEmotions
+  - type: Vocal
+    sounds:
+      Unsexed: SoundsXeno
+
 
 
 - type: damageModifierSet
@@ -395,3 +411,110 @@
     channels:
     - XenoIvent
     defaultChannel: XenoIvent
+  - type: Prying
+  - type: Tag 
+    tags: 
+    - XenoEmotions
+  - type: Vocal
+    sounds:
+      Unsexed: SoundsXeno
+
+
+
+- type: soundCollection
+  id: XenoRoars
+  files:
+    - /Audio/Weapons/Xeno/alien_roar1.ogg
+    - /Audio/Weapons/Xeno/alien_roar2.ogg
+    - /Audio/Weapons/Xeno/alien_roar3.ogg
+    - /Audio/Weapons/Xeno/alien_roar4.ogg
+    - /Audio/Weapons/Xeno/alien_roar5.ogg
+    - /Audio/Weapons/Xeno/alien_roar6.ogg
+
+- type: soundCollection
+  id: XenoTailSoundsHurt
+  files:
+    - /Audio/Weapons/Xeno/alien_tail_attack.ogg
+
+- type: soundCollection
+  id: XenoTailSounds
+  files:
+    - /Audio/Weapons/Xeno/alien_tail_swipe1.ogg
+
+- type: emote
+  id: XenoTailSlap
+  name: Tail Slap
+  category: Vocal
+  icon: Interface/Emotes/tailslap.png
+  whitelist:
+    tags:
+      - XenoEmotions
+  chatMessages: ["недовольно шлёпает своим хвостом!"]
+  chatTriggers:
+    - tailslap
+    - slap
+    - шлёпает
+    - шлепает
+    - шлёпнуть
+    - шлепнуть
+
+- type: emote
+  id: XenoTailThump
+  name: Tail Thump
+  category: Vocal
+  icon: Interface/Emotes/tailslap.png
+  whitelist:
+    tags:
+      - XenoEmotions
+  chatMessages: ["яростно бьёт хвостом по полу, издавая глухой стук!"]
+  chatTriggers:
+    - tailthump
+    - thump
+    - бьет
+    - бьёт
+    - стучит
+
+- type: emoteSounds
+  id: SoundsXeno
+  sounds:
+    ScreamXeno:
+      collection: XenoRoars
+    XenoTailSlap:
+      collection: XenoTailSounds
+    XenoTailThump:
+      collection: XenoTailSoundsHurt
+
+- type: emote
+  id: ScreamXeno
+  name: Xeno's scream
+  category: Vocal
+  icon: Interface/Actions/scream.png
+  whitelist:
+    tags:
+      - XenoEmotions
+  chatMessages: ["кричит!"] 
+  chatTriggers:
+    - scream
+    - screams
+    - screaming
+    - screamed
+    - shriek
+    - shrieks
+    - shrieking
+    - shrieked
+    - screech
+    - screeches
+    - screeching
+    - screeched
+    - yell
+    - yells
+    - yelled
+    - yelling
+    - кричит
+    - кричит!
+    - орет
+    - орёт
+
+
+- type: Tag
+  id: XenoEmotions
