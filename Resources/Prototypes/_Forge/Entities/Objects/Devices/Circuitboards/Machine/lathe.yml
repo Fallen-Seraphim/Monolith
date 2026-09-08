@@ -170,7 +170,7 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: AmmoLoaderSmallMachineCircuitboard
-  name: Small Ammo Loader machine board
+  name: small ammo loader machine board
   components:
   - type: Sprite
     state: science
@@ -187,7 +187,7 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: AmmoLoaderMachineCircuitboard
-  name: Ammo Loader machine board
+  name: ammo loader machine board
   components:
   - type: Sprite
     state: science
