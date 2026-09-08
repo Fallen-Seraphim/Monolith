@@ -51,7 +51,7 @@
 #Forge-change start
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
-  id: AmmoLoaderSmallCircuitboard
+  id: AmmoLoaderSmallMachineCircuitboard
   result: AmmoLoaderSmallMachineCircuitboard
   materials:
     Steel: 150
