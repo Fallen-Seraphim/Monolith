@@ -54,7 +54,7 @@
       types: {}
   - type: PressureImmunity
   - type: Sprite
-    sprite: _Forge/Mobs/Player/IventXenos/praetorianum.rsi 
+    sprite: _Forge/Mobs/Player/IventXenos/praetorianum.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: alive
@@ -363,7 +363,7 @@
       types: {}
   - type: PressureImmunity
   - type: Sprite
-    sprite: _Forge/Mobs/Player/IventXenos/faceless.rsi 
+    sprite: _Forge/Mobs/Player/IventXenos/faceless.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: alive
