@@ -40,6 +40,8 @@
   - WeaponTurretVesperaCircuitboard
   - WeaponTurretM220Circuitboard
   - ShipWeaponFabricatorCircuitboard
+  - AmmoLoaderSmallMachineCircuitboard #Forge-change start
+  - AmmoLoaderMachineCircuitboard #Forge-change end
   technologyPrerequisites:
   - ForgeShipWeaponResearchEntry
   position: -11, 5

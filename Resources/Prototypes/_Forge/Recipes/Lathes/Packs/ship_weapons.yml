@@ -24,3 +24,5 @@
   - WeaponTurretCyrexaCircuitboard
   - WeaponTurretCharonReloadCircuitboard
   - WeaponLaserTurretApolloCircuitboard
+  - AmmoLoaderSmallMachineCircuitboard #Forge-change start
+  - AmmoLoaderMachineCircuitboard #Forge-change end
