@@ -216,7 +216,6 @@
   - type: GhostTakeoverAvailable
   - type: Puller
     needsHands: false
-    speedModifier: 0.9
   - type: MeleeWeapon
     angle: 60
     animation: WeaponArcSlash
