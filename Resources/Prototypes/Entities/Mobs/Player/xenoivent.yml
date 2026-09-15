@@ -17,8 +17,8 @@
 - type: entity
   parent: SimpleMobBase 
   id: MobXenoPraetorEvent
-  name: Praetorian
-  description: Huge xeno. It fades into the shadows when stationary.
+  name: mob-xeno-praetor-name
+  description: mob-xeno-praetor-desc
   components:
   - type: MobState
   - type: MobThresholds
@@ -29,13 +29,12 @@
   - type: Damageable
     damageModifierSet: PraetorArmor
   - type: GhostRole
-    name: Praetorian 
-    description: You’ve escaped from the test tube. Fade into the dark and hunt the colonists!
-    rules: Fear? 
+    name: ghost-role-xeno-praetor-name
+    description: ghost-role-xeno-praetor-desc
+    rules: ghost-role-xeno-praetor-rules
   - type: GhostTakeoverAvailable
-    roleName: Praetorian
-    roleDescription: You’ve escaped from the test tube. Fade into the dark and hunt the colonists!
-    rules: Fear?
+    roleName: ghost-role-xeno-praetor-name
+    roleDescription: ghost-role-xeno-praetor-desc
   - type: Puller
     needsHands: false
   - type: MeleeWeapon
@@ -124,8 +123,8 @@
 
 - type: reagent
   id: Xenoblood
-  name: Xeno's blood
-  desc: Highly corrosive and toxic acidic blood of an extraterrestrial organism.
+  name: reagent-name-xenoblood
+  desc: reagent-desc-xenoblood
   group: Toxins
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: acid
@@ -170,8 +169,8 @@
 
 - type: entity
   id: ActionXenoTint
-  name: "[color=green]Tentacle Slam[/color]"
-  description: Use your tentacles to grab and stun a target player!
+  name: action-xeno-tentacle-slam-name
+  description: action-xeno-tentacle-slam-desc
   components:
   - type: EntityWorldTargetAction
     raiseOnUser: true
@@ -189,7 +188,7 @@
 
 - type: collectiveMind
   id: XenoIvent
-  name: Xeno's hive mind
+  name: chat-radio-xeno-event
   keycode: 's'
   color: "#721aba"
 
@@ -211,8 +210,8 @@
 - type: entity
   parent: SimpleMobBase 
   id: MobXenoRunnerEvent
-  name: Runner
-  description: Fast and agile xeno. It uses lightning-fast strikes to incapacitate targets.
+  name: mob-xeno-runner-name
+  description: mob-xeno-runner-desc
   components:
   - type: MobState
   - type: MobThresholds
@@ -223,13 +222,12 @@
   - type: Damageable
     damageModifierSet: RunnerArmor
   - type: GhostRole
-    name: Runner
-    description: You are the scout of the hive. Outrun your prey, stun them, and let others finish the job!
-    rules: Fear? 
+    name: ghost-role-xeno-runner-name
+    description: ghost-role-xeno-runner-desc
+    rules: ghost-role-xeno-runner-rules
   - type: GhostTakeoverAvailable
-    roleName: Runner
-    roleDescription: You are the scout of the hive. Outrun your prey, stun them, and let others finish the job!
-    rules: Fear?
+    roleName: ghost-role-xeno-runner-name
+    roleDescription: ghost-role-xeno-runner-desc
   - type: Puller
     needsHands: false
     speedModifier: 0.9
@@ -327,8 +325,8 @@
 - type: entity
   parent: SimpleMobBase 
   id: MobXenoFacelessEvent
-  name: Faceless
-  description: A terrifying, faceless horror. It melts into the darkness and spits lethal acid.
+  name: mob-xeno-faceless-name
+  description: mob-xeno-faceless-desc
   components:
   - type: MobState
   - type: MobThresholds
@@ -339,13 +337,12 @@
   - type: Damageable
     damageModifierSet: FacelessArmor
   - type: GhostRole
-    name: Faceless
-    description: You are the stealthy stalker of the hive. Dissolve into shadows, ambush targets with acid.
-    rules: Fear? 
+    name: ghost-role-xeno-faceless-name
+    description: ghost-role-xeno-faceless-desc
+    rules: ghost-role-xeno-faceless-rules
   - type: GhostTakeoverAvailable
-    roleName: Faceless
-    roleDescription: You are the stealthy stalker of the hive. Dissolve into shadows, ambush targets with acid.
-    rules: Fear?
+    roleName: ghost-role-xeno-faceless-name
+    roleDescription: ghost-role-xeno-faceless-desc
   - type: Puller
     needsHands: false
   - type: MeleeWeapon
@@ -429,7 +426,7 @@
 
 
 
-- type: soundCollection #нужно создать отдельную папку
+- type: soundCollection
   id: XenoRoars
   files:
     - /Audio/Weapons/Xeno/alien_roar1.ogg
@@ -536,9 +533,9 @@
 
 - type: entity
   id: Xenoresin
-  name: resin
+  name: tile-xeno-resin-name
   parent: BaseKudzu
-  description: A rapidly growing resin . WHY ARE YOU STOPPING TO LOOK AT IT?!
+  description: tile-xeno-resin-desc
   placement:
     mode: SnapgridCenter
     snap:

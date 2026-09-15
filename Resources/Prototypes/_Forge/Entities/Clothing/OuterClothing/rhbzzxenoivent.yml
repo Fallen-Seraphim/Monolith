@@ -1,8 +1,8 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, ClothingFlightProfileEasy] 
   id: ClothingOuterHardsuitRCHBZD14
-  name: RCHBZD exosuit M14
-  description: A lightweight yet strong exosuit used for special cleanup NanoTrasen operations.
+  name: ent-ClothingOuterHardsuitRCHBZD14-name
+  description: ent-ClothingOuterHardsuitRCHBZD14-desc
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/cburn.rsi
@@ -53,8 +53,8 @@
 - type: entity
   parent: ClothingOuterHardsuitRCHBZD14
   id: ClothingOuterHardsuitRCHBZD14H
-  name: RCHBZD exosuit M14H
-  description: A heavy and strong exosuit used for special cleanup NanoTrasen operations.
+  name: ent-ClothingOuterHardsuitRCHBZD14H-name
+  description: ent-ClothingOuterHardsuitRCHBZD14H-desc
   components:
   - type: Armor
     modifiers:
@@ -73,10 +73,10 @@
 
 
 - type: entity
-  name: Colony radio
-  description: A handy Colony radio.
   parent: RadioHandheld
   id: RadioHandhelColonyNT
+  name: ent-RadioHandhelColonyNT-name
+  description: ent-RadioHandhelColonyNT-desc
   suffix: FallenSeraphim
   components:
   - type: RadioMicrophone
@@ -94,8 +94,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyNTRCHBZD
-  name: RCHBZD encryption key 
-  description: An encryption key used by RCHBZD operatives. 
+  name: ent-EncryptionKeyNTRCHBZD-name
+  description: ent-EncryptionKeyNTRCHBZD-desc
   suffix: FallenSeraphim
   components:
     - type: EncryptionKey
@@ -111,8 +111,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyColonyKey
-  name: Colony encryption key 
-  description: An encryption key used by NT in the colony. 
+  name: ent-EncryptionKeyColonyKey-name
+  description: ent-EncryptionKeyColonyKey-desc
   suffix: FallenSeraphim
   components:
     - type: EncryptionKey
@@ -127,8 +127,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyDestenyKey
-  name: Desteny encryption key 
-  description: An encryption key used by TSFMC in the colony. 
+  name: ent-EncryptionKeyDestenyKey-name
+  description: ent-EncryptionKeyDestenyKey-desc
   suffix: FallenSeraphim
   components:
     - type: EncryptionKey
@@ -141,10 +141,10 @@
         - state: pirate_label
 
 - type: entity
-  name: Desteny radio
-  description: A handy radio for "Desteny".
   parent: RadioHandheld
   id: RadioHandhelTSFMCDesteny
+  name: ent-RadioHandhelTSFMCDesteny-name
+  description: ent-RadioHandhelTSFMCDesteny-desc
   suffix: FallenSeraphim
   components:
   - type: RadioMicrophone
@@ -159,21 +159,20 @@
     heldPrefix: walkietalkie
 
 - type: company
-  id: TSFMCOverlord
+  id: RCHBZDNTPRT
   form: Protagonist
-  name: NT RCHBZD
+  name: РХБЗЗ NanoTrasen 
   color: "#5D4776FF" 
   whitelisted: true
   hidden: false
-
 
 
 - type: entity
   parent: ComputerComms
   id: ComputerCommsRCHZBD
   suffix: FallenSeraphim
-  name: RCHBZD NT comms
-  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  name: ent-ComputerCommsRCHZBD-name
+  description: ent-ComputerCommsRCHZBD-desc
   components:
   - type: Sprite
     layers:
@@ -190,7 +189,7 @@
   - type: AccessReader
     access: [["Command"]]
   - type: CommunicationsConsole
-    title: РХБЗЗ NanoTrasen # Не уверен, что все поймут RCHBZD, а остольное менять лень
+    title: РХБЗЗ NanoTrasen
     color: "#5D4776FF"
   - type: PointLight
     radius: 1.5
@@ -200,19 +199,19 @@
 
 - type: radioChannel
   id: RCHBZDNTCH
-  name: RCHBZD NT
+  name: chat-radio-rchbzd
   keycode: 'z'
   frequency: 9721
   color: "#5D4776FF"
 - type: radioChannel
   id: ColonyCh
-  name: Colony
+  name: chat-radio-colony
   keycode: 'c'
   frequency: 9722
   color: "#a436c2"
 - type: radioChannel
   id: TSFMC1D
-  name: Desteny
+  name: chat-radio-destiny
   keycode: 'd'
   frequency: 9723
   color: "#8267ff"
@@ -220,8 +219,8 @@
 - type: entity
   parent: ClothingOuterArmorSheriffVestWeb
   id: ClothingOuterArmorTSMCM2C
-  name: TSFMC armor M-2-C
-  description: TSFMC armor for comanders. Second generation. Looks basicaly. Why not?
+  name: ent-ClothingOuterArmorTSMCM2C-name
+  description: ent-ClothingOuterArmorTSMCM2C-desc
   suffix: FallenSeraphim
   components:
   - type: Sprite
@@ -249,8 +248,8 @@
 - type: entity
   parent: ClothingHeadHelmetMercenary
   id: HelmetTSFOverlord
-  name: TSFMC helmet M-10
-  description: TSFMC helmet.
+  name: ent-HelmetTSFOverlord-name
+  description: ent-HelmetTSFOverlord-desc
   suffix: FallenSeraphim
 
 
