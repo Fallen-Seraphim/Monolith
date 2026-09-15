@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics.CodeAnalysis; // добавить этот using
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Forge.Weapons.Longsword.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Popups;
@@ -21,6 +21,7 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GunBatteryAmmoComponent, ShotAttemptedEvent>(OnShotAttempted);
+        SubscribeLocalEvent<GunBatteryAmmoComponent, GunMuzzleFlashAttemptEvent>(OnMuzzleFlashAttempted);
         SubscribeLocalEvent<GunBatteryAmmoComponent, AmmoShotEvent>(OnAmmoShot);
     }
 
@@ -42,15 +43,31 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         return true;
     }
 
+    private bool HasEnoughCharge(EntityUid uid, float cost)
+    {
+        return TryGetBattery(uid, out _, out var battery) && battery.CurrentCharge >= cost;
+    }
+
     private void OnShotAttempted(Entity<GunBatteryAmmoComponent> ent, ref ShotAttemptedEvent args)
     {
         if (args.Cancelled)
             return;
 
-        if (!TryGetBattery(ent.Owner, out _, out var battery) || battery.CurrentCharge < ent.Comp.FireCost)
+        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost))
         {
             args.Cancel();
             _popup.PopupEntity(Loc.GetString(ent.Comp.NoChargePopup), ent.Owner, args.User);
+        }
+    }
+
+    private void OnMuzzleFlashAttempted(Entity<GunBatteryAmmoComponent> ent, ref GunMuzzleFlashAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost))
+        {
+            args.Cancelled = true;
         }
     }
 
