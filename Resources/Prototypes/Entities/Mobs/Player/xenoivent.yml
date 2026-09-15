@@ -6,12 +6,7 @@
     Slash: 0.2      
     Heat: 0.85      
     Shock: 0.2      
-    Cold: 0.0       
-  flatModifiers: 
-    Piercing: 21    
-    Blunt: 14     
-    Slash: 18     
-    Heat: 2        
+    Cold: 0.0            
      
 
 - type: entity
@@ -33,8 +28,6 @@
     description: ghost-role-xeno-praetor-desc
     rules: ghost-role-xeno-praetor-rules
   - type: GhostTakeoverAvailable
-    roleName: ghost-role-xeno-praetor-name
-    roleDescription: ghost-role-xeno-praetor-desc
   - type: Puller
     needsHands: false
   - type: MeleeWeapon
@@ -200,12 +193,7 @@
     Slash: 0.3     
     Heat: 0.85      
     Shock: 0.3     
-    Cold: 0.0       
-  flatModifiers: 
-    Piercing: 14     
-    Blunt: 10     
-    Slash: 11     
-    Heat: 2       
+    Cold: 0.0              
 
 - type: entity
   parent: SimpleMobBase 
@@ -226,8 +214,6 @@
     description: ghost-role-xeno-runner-desc
     rules: ghost-role-xeno-runner-rules
   - type: GhostTakeoverAvailable
-    roleName: ghost-role-xeno-runner-name
-    roleDescription: ghost-role-xeno-runner-desc
   - type: Puller
     needsHands: false
     speedModifier: 0.9
@@ -315,12 +301,7 @@
     Slash: 0.4      
     Heat: 0.5       
     Shock: 0.4      
-    Cold: 0.0       
-  flatModifiers: 
-    Piercing: 10    
-    Blunt: 8     
-    Slash: 10     
-    Heat: 5        
+    Cold: 0.0              
 
 - type: entity
   parent: SimpleMobBase 
@@ -341,8 +322,6 @@
     description: ghost-role-xeno-faceless-desc
     rules: ghost-role-xeno-faceless-rules
   - type: GhostTakeoverAvailable
-    roleName: ghost-role-xeno-faceless-name
-    roleDescription: ghost-role-xeno-faceless-desc
   - type: Puller
     needsHands: false
   - type: MeleeWeapon

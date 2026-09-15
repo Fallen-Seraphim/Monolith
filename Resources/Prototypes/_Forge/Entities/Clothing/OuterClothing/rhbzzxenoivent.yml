@@ -189,7 +189,7 @@
   - type: AccessReader
     access: [["Command"]]
   - type: CommunicationsConsole
-    title: РХБЗЗ NanoTrasen
+    title: decl-rchbzd-com
     color: "#5D4776FF"
   - type: PointLight
     radius: 1.5

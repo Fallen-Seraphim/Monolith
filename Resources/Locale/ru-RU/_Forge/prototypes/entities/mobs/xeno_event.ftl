@@ -39,21 +39,21 @@ reagent-physical-desc-acid-smelling = пахнущий едкой кислото
 
 
 
-# Экзокостюмы РХБЗЗ
+
 ent-ClothingOuterHardsuitRCHBZD14 = экзокостюм РХБЗЗ M14
     .desc = Легкий, но прочный экзокостюм, используемый во время специальных операций NanoTrasen по зачистке зараженных территорий.
 
 ent-ClothingOuterHardsuitRCHBZD14H = экзокостюм РХБЗЗ M14H
     .desc = Тяжелый и укрепленный экзокостюм, используемый во время специальных операций NanoTrasen по зачистке территории.
 
-# Рации
+
 ent-RadioHandhelColonyNT = рация колонии
     .desc = Удобная портативная рация колонии.
 
 ent-RadioHandhelTSFMCDesteny = рация Destiny
     .desc = Портативная рация сил TSFMC для связи с экипажем корабля «Destiny».
 
-# Ключи шифрования
+
 ent-EncryptionKeyNTRCHBZD = ключ шифрования РХБЗЗ
     .desc = Ключ шифрования, используемый оперативниками специального подразделения РХБЗЗ.
 
@@ -63,7 +63,7 @@ ent-EncryptionKeyColonyKey = ключ шифрования колонии
 ent-EncryptionKeyDestenyKey = ключ шифрования Destiny
     .desc = Ключ шифрования, используемый силами TSFMC в колонии.
 
-# Консоль связи и броня TSFMC
+
 ent-ComputerCommsRCHZBD = консоль связи РХБЗЗ NT
     .desc = Компьютер, используемый для отправки объявлений по всей станции, изменения уровня угрозы и вызова эвакуационного шаттла.
 
@@ -77,3 +77,5 @@ chat-radio-rchbzd = РХБЗЗ NT
 chat-radio-colony = Колония
 chat-radio-destiny = Destiny
 chat-radio-xeno-event = Улей Ксеноморфов
+
+decl-rchbzd-com = РХБЗЗ NanoTrasen
