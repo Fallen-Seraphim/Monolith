@@ -21,13 +21,16 @@
     - Back
     - suitStorage
   - type: GunWieldBonus
-    minAngle: -27
-    maxAngle: -36
+    minAngle: -33
+    maxAngle: -35
   - type: Gun
-    minAngle: 27
-    maxAngle: 39
-    fireRate: 2
-    selectedMode: SemiAuto
+    minAngle: 35
+    maxAngle: 45
+    angleIncrease: 0.5
+    angleDecay: 9
+    cameraRecoilScalar: 0.5
+    fireRate: 4
+    projectileSpeed: 30 
     availableModes:
     - FullAuto
     - SemiAuto
@@ -63,10 +66,6 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 7
-    pvsIncrease: 0.7
   - type: SpeedModifiedOnWield # Mono
     walkModifier: 1
     sprintModifier: 1
@@ -85,7 +84,34 @@
     damage:
       types:
         Piercing: 70 
-    armorPenetration: 0.875 
+        Structural: 320
+    armorPenetration: 0.7 
+
+- type: entity
+  id: Bullet10x99mmPlaststeel
+  name: bullet (10x99mm Caseless)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Structural: 380
+    armorPenetration: 0.9
+
+- type: entity
+  id: Bullet10x99mmTrash
+  name: bullet (10x99mm trash bullet)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50
+        Structural: 250
+    armorPenetration: 0.650
   
 - type: Tag
   id: Magazine10x99mmCaseless
@@ -129,7 +155,7 @@
   description: Longsword International Relsotrone, it use ammo and energy.
   components:
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Snipers/shenzhen.rsi
+    sprite: _Forge/Objects/Longsword/longswordrailgun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -199,12 +225,12 @@
     zeroVisible: true
   - type: Appearance
   - type: Clothing
-    sprite: _Mono/Objects/Weapons/Guns/Snipers/shenzhen_inhands_32x.rsi
+    sprite: _Forge/Objects/Longsword/longswordrailgunequipped.rsi
   - type: Item
     size: Ginormous
     shape:
     - 0,0,7,2
-    sprite: _Mono/Objects/Weapons/Guns/Snipers/shenzhen_inhands_32x.rsi
+    sprite: _Forge/Objects/Longsword/longswordrailgunequipped.rsi
   - type: StaticPrice
     price: 2400
   - type: SpeedModifiedOnWield
@@ -260,8 +286,34 @@
   - type: Appearance
 
 - type: entity
+  id: MagazineLIR31Pls
+  name: LIR-31 plaststeel magazin
+  parent: MagazineLIR31
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge10x99mmPlaststeel
+    capacity: 5
+    mayTransfer: true
+    whitelist:
+      tags:
+      - Cartridge10x99mmCaseless
+
+- type: entity
+  id: MagazineLIR31trs
+  name: LIR-31 trash magazin
+  parent: MagazineLIR31
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge10x99mmTrash
+    capacity: 5
+    mayTransfer: true
+    whitelist:
+      tags:
+      - Cartridge10x99mmCaseless
+
+- type: entity
   id: PowerCellLIR31
-  name: батарея LIR-31
+  name: power cell LIR-31
   description: Компактный аккумулятор для рельсотрона LIR-31. Хватает примерно на 5 выстрелов.
   parent: PowerCellSmall 
   components:
@@ -282,4 +334,24 @@
   components:
   - type: CartridgeAmmo
     proto: Bullet10x99mmCaseless
+    deleteOnSpawn: true
+
+- type: entity
+  id: Cartridge10x99mmPlaststeel
+  name: plaststeel cartridge (10x99mm)
+  parent: BaseCartridge10x99mmCaseless
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet10x99mmPlaststeel
+    deleteOnSpawn: true
+
+- type: entity
+  id: Cartridge10x99mmTrash
+  name: trash cartridge (10x99mm)
+  parent: BaseCartridge10x99mmCaseless
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet10x99mmTrash
     deleteOnSpawn: true
