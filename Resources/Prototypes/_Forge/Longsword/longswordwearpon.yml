@@ -1,6 +1,6 @@
 - type: entity
   id: WeaponRifleLIR12
-  name: LIR-12 (5.56x45 mm)
+  name: LIR-12 Alglorian (5.56x45 mm)
   parent: BaseWeaponRifle
   description: Modern rifle for Longsword International.
   components:
@@ -83,9 +83,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 70 
-        Structural: 320
-    armorPenetration: 0.7 
+        Piercing: 50
+        Structural: 250
+    armorPenetration: 0.4
 
 - type: entity
   id: Bullet10x99mmPlaststeel
@@ -96,9 +96,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 70
+        Piercing: 50
         Structural: 380
-    armorPenetration: 0.9
+    armorPenetration: 0.5
 
 - type: entity
   id: Bullet10x99mmTrash
@@ -109,9 +109,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50
-        Structural: 250
-    armorPenetration: 0.650
+        Piercing: 40
+        Structural: 150
+    armorPenetration: 0.3
   
 - type: Tag
   id: Magazine10x99mmCaseless
@@ -133,8 +133,8 @@
     tags:
       - Cartridge
       - Cartridge10x99mmCaseless
-  - type: CartridgeAmmo
-    deleteOnSpawn: true
+  - type: HitscanAmmo
+    casingPrototype: ChemicalSlop
   - type: Sprite
     noRot: false
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Casings/big_ammo_casing_steel.rsi
@@ -149,7 +149,7 @@
 
 
 - type: entity
-  name: LIR-31 (10x99mm)
+  name: LIR-31 Reqonqista (10x99mm)
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
   id: WeaponLIR31
   description: Longsword International Relsotrone, it use ammo and energy.
@@ -169,11 +169,11 @@
     maxAngle: 1.5
     angleIncrease: 20
     angleDecay: 9
-    fireRate: 0.3
+    fireRate: 0.7
     selectedMode: SemiAuto
     availableModes: SemiAuto
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/chemrail_shenzhen.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/batrifle_cock.ogg
@@ -211,8 +211,9 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 3
         whitelist:
-          components:
-          - PowerCell
+          tags:
+          - PowerCellLIR31
+        whitelistFailPopup: gun-magazine-whitelist-fail
       
   - type: ContainerContainer
     containers:
@@ -255,6 +256,7 @@
 - type: entity
   id: MagazineLIR31
   name: LIR-31 magazine
+  description: Magazine for LIR-31. 5 ammo.
   parent: [BaseItem, RecyclableItemSteelTiny]
   components:
   - type: Tag
@@ -314,9 +316,11 @@
 - type: entity
   id: PowerCellLIR31
   name: power cell LIR-31
-  description: Компактный аккумулятор для рельсотрона LIR-31. Хватает примерно на 5 выстрелов.
+  description: Power cell for 
   parent: PowerCellSmall 
   components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_lethal.rsi
   - type: Battery
     maxCharge: 500
     startingCharge: 500

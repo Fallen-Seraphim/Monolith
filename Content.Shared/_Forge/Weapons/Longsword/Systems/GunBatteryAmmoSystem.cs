@@ -7,6 +7,7 @@ using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Shared._Forge.Weapons.Longsword.Systems;
 
@@ -21,6 +22,7 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GunBatteryAmmoComponent, ShotAttemptedEvent>(OnShotAttempted);
+        SubscribeLocalEvent<GunBatteryAmmoComponent, AttemptShootEvent>(OnAttemptShoot);
         SubscribeLocalEvent<GunBatteryAmmoComponent, GunMuzzleFlashAttemptEvent>(OnMuzzleFlashAttempted);
         SubscribeLocalEvent<GunBatteryAmmoComponent, AmmoShotEvent>(OnAmmoShot);
     }
@@ -43,9 +45,23 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         return true;
     }
 
-    private bool HasEnoughCharge(EntityUid uid, float cost)
+    private bool HasEnoughCharge(EntityUid uid, float cost, out string? failMessage)
     {
-        return TryGetBattery(uid, out _, out var battery) && battery.CurrentCharge >= cost;
+        failMessage = null;
+
+        if (!TryGetBattery(uid, out _, out var battery))
+        {
+            failMessage = "gun-battery-missing";
+            return false;
+        }
+
+        if (battery.CurrentCharge < cost)
+        {
+            failMessage = "gun-battery-no-charge";
+            return false;
+        }
+
+        return true;
     }
 
     private void OnShotAttempted(Entity<GunBatteryAmmoComponent> ent, ref ShotAttemptedEvent args)
@@ -53,10 +69,21 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost))
+        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost, out _))
         {
             args.Cancel();
-            _popup.PopupEntity(Loc.GetString(ent.Comp.NoChargePopup), ent.Owner, args.User);
+        }
+    }
+
+    private void OnAttemptShoot(Entity<GunBatteryAmmoComponent> ent, ref AttemptShootEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost, out var failMessage))
+        {
+            args.Cancelled = true;
+            args.Message = Loc.GetString(failMessage ?? ent.Comp.NoChargePopup);
         }
     }
 
@@ -65,7 +92,7 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost))
+        if (!HasEnoughCharge(ent.Owner, ent.Comp.FireCost, out _))
         {
             args.Cancelled = true;
         }
@@ -76,9 +103,15 @@ public sealed class GunBatteryAmmoSystem : EntitySystem
         var count = Math.Max(args.FiredProjectiles.Count, 1);
         var cost = component.FireCost * count;
 
-        if (TryGetBattery(uid, out var batteryUid, out _))
+        if (!TryGetBattery(uid, out var batteryUid, out var battery))
+            return;
+
+        _battery.TryUseCharge(batteryUid, cost);
+
+        if (battery.CurrentCharge < component.FireCost)
         {
-            _battery.TryUseCharge(batteryUid, cost);
+            _popup.PopupEntity(Loc.GetString("gun-battery-destroyed"), uid);
+            EntityManager.DeleteEntity(batteryUid);
         }
     }
 }
