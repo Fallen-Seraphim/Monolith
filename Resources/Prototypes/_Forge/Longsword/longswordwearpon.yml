@@ -3,6 +3,7 @@
   name: LIR-12 Alglorian (5.56x45 mm)
   parent: BaseWeaponRifle
   description: Modern rifle for Longsword International.
+  suffix: Longsword
   components:
   - type: Sprite
     sprite: _Forge/Objects/Longsword/longswordautomatrifle.rsi
@@ -85,7 +86,7 @@
       types:
         Piercing: 50
         Structural: 250
-    armorPenetration: 0.4
+    armorPenetration: 0.6
 
 - type: entity
   id: Bullet10x99mmPlaststeel
@@ -98,7 +99,7 @@
       types:
         Piercing: 50
         Structural: 380
-    armorPenetration: 0.5
+    armorPenetration: 0.7
 
 - type: entity
   id: Bullet10x99mmTrash
@@ -153,6 +154,7 @@
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
   id: WeaponLIR31
   description: Longsword International Relsotrone, it use ammo and energy.
+  suffix: Longsword
   components:
   - type: Sprite
     sprite: _Forge/Objects/Longsword/longswordrailgun.rsi
@@ -169,7 +171,7 @@
     maxAngle: 1.5
     angleIncrease: 20
     angleDecay: 9
-    fireRate: 0.7
+    fireRate: 0.8
     selectedMode: SemiAuto
     availableModes: SemiAuto
     soundGunshot:
@@ -179,7 +181,7 @@
       path: /Audio/Weapons/Guns/Cock/batrifle_cock.ogg
   
   - type: GunBatteryAmmo
-    fireCost: 100
+    fireCost: 50
   - type: PowerCellSlot
     cellSlotId: gun_battery
     fitsInCharger: true
@@ -256,7 +258,7 @@
 - type: entity
   id: MagazineLIR31
   name: LIR-31 magazine
-  description: Magazine for LIR-31. 5 ammo.
+  description: Magazine for LIR-31. 10 ammo.
   parent: [BaseItem, RecyclableItemSteelTiny]
   components:
   - type: Tag
@@ -266,7 +268,7 @@
     size: Small
   - type: BallisticAmmoProvider
     proto: Cartridge10x99mmCaseless
-    capacity: 5
+    capacity: 10
     mayTransfer: true
     whitelist:
       tags:
@@ -294,7 +296,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge10x99mmPlaststeel
-    capacity: 5
+    capacity: 10
     mayTransfer: true
     whitelist:
       tags:
@@ -307,7 +309,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge10x99mmTrash
-    capacity: 5
+    capacity: 10
     mayTransfer: true
     whitelist:
       tags:
@@ -319,8 +321,6 @@
   description: Power cell for 
   parent: PowerCellSmall 
   components:
-  - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_lethal.rsi
   - type: Battery
     maxCharge: 500
     startingCharge: 500

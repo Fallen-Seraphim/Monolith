@@ -54,4 +54,4 @@
   special:
   - !type:GiveItemSpecial
     prototype:
-    - EncryptionKeyNexus
+    - EncryptionKeyLongsword

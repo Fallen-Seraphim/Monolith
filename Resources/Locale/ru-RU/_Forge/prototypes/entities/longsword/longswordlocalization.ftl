@@ -5,13 +5,13 @@ ent-WeaponLIR31 = LIR-31 Реконкиста (10x99mm)
     .desc = Рельсотрон созданный Longsword International, использует патроны и энергию.
 
 ent-MagazineLIR31 = магазин LIR-31
-    .desc = Магазин для LIR-31. 5 боеприпасов 10x99. Звучит мощно.
+    .desc = Магазин для LIR-31. 10 боеприпасов 10x99. Звучит мощно.
 
 ent-MagazineLIR31Pls = магазин LIR-31 (пластсталь)
-    .desc = Магазин для LIR-31. 5 боеприпасов 10x99. Звучит мощно.
+    .desc = Магазин для LIR-31. 10 боеприпасов 10x99. Звучит мощно.
 
 ent-MagazineLIR31trs = мусорный магазин LIR-31
-    .desc = Магазин для LIR-31. 5 боеприпасов 10x99. Звучит мощно.
+    .desc = Магазин для LIR-31. 10 боеприпасов 10x99. Звучит мощно.
 
 ent-PowerCellLIR31 = батарея LIR-31
     .desc = Батарея для рельсотрона LIR-31.
@@ -25,3 +25,8 @@ ent-ClothingHeadHelmetHardsuitLIlight = шлем LI-19
 gun-battery-missing = В оружии нет батареи.
 gun-battery-no-charge = Недостаточно заряда батареи для выстрела.
 gun-battery-destroyed = Батарея разряжена и сгорела.
+
+chat-radio-longsword = Longsword International 
+
+ent-EncryptionKeyLongsword = ключ шифрования LI
+    .desc = Ключ шифрования, используемый Longsword International.
