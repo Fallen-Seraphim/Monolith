@@ -172,6 +172,7 @@
     angleIncrease: 20
     angleDecay: 9
     fireRate: 0.8
+    projectileSpeed: 65
     selectedMode: SemiAuto
     availableModes: SemiAuto
     soundGunshot:
@@ -359,3 +360,77 @@
   - type: CartridgeAmmo
     proto: Bullet10x99mmTrash
     deleteOnSpawn: true
+
+
+- type: entity
+  name: LIR-21 Alien (7.62x51mm)
+  parent: [BaseWeaponRifle, BaseGunWieldable]
+  id: WeaponRifleAlien
+  description: Modern Longsword rifle 7.62x51mm. Only for operatives.
+  components:
+  - type: Sprite
+    sprite: _Forge/Objects/Longsword/longsword_alien.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,3
+    sprite: _Forge/Objects/Longsword/longsword_alien_inhands.rsi
+  - type: GunWieldBonus
+    minAngle: 0 
+    maxAngle: 0 
+  - type: Gun
+    minAngle: 3 
+    maxAngle: 20
+    angleIncrease: 2.25 
+    angleDecay: 6 
+    projectileSpeed: 45 
+    fireRate: 4.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762x51mmFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine762x51mmFMJ
+            - Magazine762x51mmLowCapacityFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge762x51mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge762x51mmFMJ
+  - type: SpeedModifiedOnWield # Mono
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Clothing
+    sprite: _Forge/Objects/Longsword/longsword_alien_inhands.rsi
+  - type: GunRequiresWield

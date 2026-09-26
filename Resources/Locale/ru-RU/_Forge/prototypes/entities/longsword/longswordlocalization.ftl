@@ -30,3 +30,10 @@ chat-radio-longsword = Longsword International
 
 ent-EncryptionKeyLongsword = ключ шифрования LI
     .desc = Ключ шифрования, используемый Longsword International.
+
+research-discipline-LI = LI
+
+research-technology-li-basic-apparel = Базовая одежда LI
+research-technology-li-equipment-t1 = Экипировка LI (Т1)
+research-technology-li-equipment-t2 = Экипировка LI (Т2)
+research-technology-li-equipment-t3 = Экипировка LI (Т3)
