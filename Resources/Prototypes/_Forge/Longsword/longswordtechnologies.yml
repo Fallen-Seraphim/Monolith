@@ -34,6 +34,7 @@
   - MagazineLIR31Pls
   - MagazineLIR31trs
   - PowerCellLIR31
+  - ClothingBeltLIWebbing
 
 - type: techDiscipline
   id: LI
@@ -60,6 +61,7 @@
   recipeUnlocks:
   - ClothingUniformJumpsuitLI
   - ClothingHeadHatBereLI
+  - ClothingBeltLIWebbing
   technologyPrerequisites:
   - UniversalMaterialResearchT1
   position: 0, 0
@@ -111,6 +113,13 @@
   position: 0, 2
 
 
+
+- type: latheRecipe
+  id: ClothingBeltLIWebbing
+  result: ClothingBeltLIWebbing
+  completetime: 2
+  materials:
+    Cloth: 100
 
 - type: latheRecipe
   id: ClothingUniformJumpsuitLI

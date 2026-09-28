@@ -22,3 +22,23 @@
   keycode: 'l'
   frequency: 2749
   color: "#FFFFE0"
+
+
+- type: entity
+  id: LongswordListeningBug
+  name: LI listening bug
+  description: Bug&
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Forge/Objects/Longsword/listening_bug.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: RadioMicrophone
+    broadcastChannel: LongswordInternational
+    listenRange: 5
+    unobstructedRange: false   
+    powered: false
+  - type: StaticPrice
+    price: 150

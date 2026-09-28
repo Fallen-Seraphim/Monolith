@@ -27,3 +27,13 @@
   - type: Item
     sprite: _Forge/Objects/Longsword/longsword_uniform.rsi
 
+- type: entity
+  parent: NFClothingBeltStorageBase 
+  id: ClothingBeltLIWebbing
+  name: LI carrier
+  description: Unique and versatile chest rig, can hold Longsword gear.
+  components:
+  - type: Sprite
+    sprite: _Forge/Objects/Longsword/webbings_normal_LI.rsi
+  - type: Clothing
+    sprite: _Forge/Objects/Longsword/webbings_normal_LI.rsi
