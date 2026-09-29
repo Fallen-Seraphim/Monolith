@@ -26,7 +26,13 @@
       "name": "larva_downed_3"
     },
     {
-      "name": "sleeping"
+      "name": "sleeping",
+      "delays": [
+        [
+          1,
+          1
+        ]
+      ]
     },
     {
       "name": "alive",
