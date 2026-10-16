@@ -199,7 +199,7 @@
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 20
-  color: "#66CDAA"
+  color: 66CDAA
   reagent: N611
   pricePerMole: 0
   gasOverlaySprite: /Textures/Effects/atmospherics.rsi
@@ -230,7 +230,7 @@
   metabolisms:
     Poison:
       metabolismRate: 0.4
-      effects: &n611pEffects
+      effects:
       - !type:PopupMessage
         type: Local
         messages:
@@ -300,9 +300,80 @@
         conditions:
         - !type:ReagentThreshold
           min: 7
+    # Lungs multiply this rate by 100. A normal breath is ~24u and is wiped on exhale,
+    # so the sleep threshold has to be reachable by one dense breath.
     Gas:
       metabolismRate: 0.25
-      effects: *n611pEffects
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - n611p-effect-first
+        - n611p-effect-second
+        - n611p-effect-third
+        - n611p-effect-fourth
+        - n611p-effect-fifth
+        - n611p-effect-sixth
+        probability: 0.8
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 8
+        refresh: false
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:Drunk
+        boozePower: 5
+        slurSpeech: false
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:TunnelVision
+        intensity: 1.4
+        pulse: 2.2
+        darkness: 0.6
+        color: "#9f7ab5FF"
+        time: 4
+        conditions:
+        - !type:ReagentThreshold
+          min: 8
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+      - !type:StaminaDamageEffect
+        forceCrit: true
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+      - !type:GenericStatusEffect
+        key: ForcedSleep
+        component: ForcedSleeping
+        type: Add
+        time: 5
+        refresh: true
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Yowie
+          shouldHave: false
+        damage:
+          types:
+            Poison: 0.1
+      - !type:Emote
+        emote: Scream
+        probability: 0.4
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
  
  
  
@@ -317,7 +388,7 @@
   metabolisms:
     Poison:
       metabolismRate: 0.4
-      effects: &a517Effects
+      effects:
       - !type:PopupMessage
         type: Local
         messages:
@@ -373,9 +444,56 @@
         conditions:
         - !type:ReagentThreshold
           min: 7
+    # Rate 0.05 * lung modifier 100 = 5u moved into the blood per tick.
+    # The crit finisher lives on the poison metabolism, so it still works after the target stops breathing.
     Gas:
-      metabolismRate: 0.25
-      effects: *a517Effects
+      metabolismRate: 0.05
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - a517-effect-first
+        - a517-effect-second
+        - a517-effect-third
+        - a517-effect-fourth
+        - a517-effect-fifth
+        probability: 0.8
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Yowie
+          shouldHave: false
+        damage:
+          types:
+            Poison: 0.6
+      - !type:TunnelVision
+        intensity: 0.8
+        pulse: 1.4
+        darkness: 0.8
+        color: "#3d5a4aFF"
+        time: 3
+        conditions:
+        - !type:ReagentThreshold
+          min: 8
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 8
+      - !type:StaminaDamageEffect
+        forceCrit: true
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+      - !type:Emote
+        emote: Scream
+        probability: 0.4
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+      - !type:AbsorbReagent
  
  
 - type: reagent
@@ -389,7 +507,7 @@
   metabolisms:
     Poison:
       metabolismRate: 0.4
-      effects: &v903Effects
+      effects:
       - !type:PopupMessage
         type: Local
         messages:
@@ -452,9 +570,61 @@
         conditions:
         - !type:ReagentThreshold
           min: 7
+    # Do not scale this damage by quantity: a breath is ~24u and the lung rate modifier is 100.
     Gas:
-      metabolismRate: 0.25
-      effects: *v903Effects
+      metabolismRate: 0.05
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - v903-effect-second
+        - v903-effect-first
+        - v903-effect-third
+        - v903-effect-fourth
+        - v903-effect-fifth
+        probability: 0.8
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Yowie
+          shouldHave: false
+        damage:
+          types:
+            Cellular: 0.8
+            Caustic: 0.6
+      - !type:ModifyBleedAmount
+        amount: 2
+        conditions:
+        - !type:ReagentThreshold
+          min: 6
+      - !type:TunnelVision
+        intensity: 0.9
+        pulse: 1.5
+        darkness: 0.85
+        color: "#6b7a2fFF"
+        time: 3
+        conditions:
+        - !type:ReagentThreshold
+          min: 8
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 8
+      - !type:StaminaDamageEffect
+        forceCrit: true
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+      - !type:Emote
+        emote: Scream
+        probability: 0.4
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+      - !type:AbsorbReagent
  
 - type: reaction
   id: N611P
@@ -542,7 +712,7 @@
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 20
-  color: "9f7ab5"
+  color: 9f7ab5
   reagent: N611P
   pricePerMole: 0
   gasOverlaySprite: /Textures/Effects/atmospherics.rsi
@@ -555,7 +725,7 @@
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 22
-  color: "3d5a4a"
+  color: 3d5a4a
   reagent: A517
   pricePerMole: 0
   gasOverlaySprite: /Textures/Effects/atmospherics.rsi
@@ -568,7 +738,7 @@
   specificHeat: 20
   heatCapacityRatio: 1.4
   molarMass: 24
-  color: "6b7a2f"
+  color: 6b7a2f
   reagent: V903
   pricePerMole: 0
   gasOverlaySprite: /Textures/Effects/atmospherics.rsi
@@ -581,50 +751,66 @@
   id: N611Canister
   name: N-611 canister
   suffix: Filled
-  description: desc-N611Canister
+  description: A combat canister of aerosolized N-611. It exhausts, suffocates and drops anyone who breathes it. Handle it in full protection.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/canister.rsi
+    layers:
+    - state: water_vapor
   - type: GasCanister
     gasMixture:
       volume: 1500
       moles:
         N611: 1500
       temperature: 293.15
- 
+
 - type: entity
   parent: StorageCanister
   id: N611PCanister
   name: N-611-P canister
   suffix: Filled
-  description: desc-N611PCanister
+  description: A canister of N-611-P. A dense cloud causes vivid hallucinations and deep sleep, and barely harms tissue.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/canister.rsi
+    layers:
+    - state: mono_bz
   - type: GasCanister
     gasMixture:
       volume: 1500
       moles:
         N611P: 1500
       temperature: 293.15
- 
+
 - type: entity
   parent: StorageCanister
   id: A517Canister
-  name: A517 canister
+  name: A-517 canister
   suffix: Filled
-  description: desc-A517Canister
+  description: A canister of A-517. Weak by itself, but lethal once the victim is already critical. Exposure seeps into the blood.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/canister.rsi
+    layers:
+    - state: carbon
   - type: GasCanister
     gasMixture:
       volume: 1500
       moles:
         A517: 1500
       temperature: 293.15
- 
+
 - type: entity
   parent: StorageCanister
   id: V903Canister
-  name: V903 canister
+  name: V-903 canister
   suffix: Filled
-  description: desc-V903Canister
+  description: A canister of V-903. It eats cells, burns tissue and causes bleeding. The dose that seeps into the blood keeps working after the cloud is gone.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/canister.rsi
+    layers:
+    - state: tritium
   - type: GasCanister
     gasMixture:
       volume: 1500

@@ -1,3 +1,4 @@
+using Content.Server.Stunnable;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects;
@@ -6,15 +7,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Forge.EntityEffects.Effects;
 
-
 [UsedImplicitly]
 public sealed partial class StaminaDamageEffect : EntityEffect
 {
-    
     [DataField]
     public float Amount = 10f;
 
-    
+    /// <summary>
+    /// Puts the target into stamina crit. While the effect keeps firing, the knockdown is refreshed:
+    /// <see cref="StaminaSystem.TakeStaminaDamage"/> does not extend a crit that is already active.
+    /// </summary>
     [DataField]
     public bool ForceCrit;
 
@@ -29,13 +31,16 @@ public sealed partial class StaminaDamageEffect : EntityEffect
         if (!entMan.TryGetComponent<StaminaComponent>(args.TargetEntity, out var stamina))
             return;
 
-        var staminaSys = entMan.System<StaminaSystem>();
-
         if (ForceCrit)
         {
-           
+            if (stamina.Critical)
+            {
+                entMan.System<StunSystem>().TryParalyze(args.TargetEntity, TimeSpan.FromSeconds(2), refresh: true);
+                return;
+            }
+
             var damage = MathF.Max(1f, stamina.CritThreshold - stamina.StaminaDamage + 1f);
-            staminaSys.TakeStaminaDamage(args.TargetEntity, damage, stamina, visual: false, immediate: true);
+            entMan.System<StaminaSystem>().TakeStaminaDamage(args.TargetEntity, damage, stamina, visual: false, immediate: true);
             return;
         }
 
@@ -43,6 +48,6 @@ public sealed partial class StaminaDamageEffect : EntityEffect
         if (args is EntityEffectReagentArgs reagentArgs)
             amount *= reagentArgs.Scale.Float();
 
-        staminaSys.TakeStaminaDamage(args.TargetEntity, amount, stamina, visual: false);
+        entMan.System<StaminaSystem>().TakeStaminaDamage(args.TargetEntity, amount, stamina, visual: false);
     }
 }

@@ -382,3 +382,8 @@ reagent-effect-guidebook-stamina-crit =
         [1] Вызывает
        *[other] вызывают
     } полное истощение выносливости
+reagent-effect-guidebook-absorb-reagent =
+    { $chance ->
+        [1] Всасывается
+       *[other] всасываются
+    } в кровь

@@ -458,3 +458,8 @@ reagent-effect-guidebook-stamina-crit =
         [1] Causes
        *[other] Cause
     } complete stamina exhaustion
+reagent-effect-guidebook-absorb-reagent =
+    { $chance ->
+        [1] Seeps
+       *[other] Seep
+    } into the bloodstream
